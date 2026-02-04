@@ -22,7 +22,8 @@
 
       "@domain/*": ["./src/domain/*"],
       "@infrastructure/*": ["./src/infrastructure/*"]
-    }
+    },
+
   },
   "include": ["src/**/*"]
 }

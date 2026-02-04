@@ -1,3 +1,5 @@
+import { ICommentView } from "@dto/comment/ICommentView";
+
 export interface IPostWithAuthor {
     id : string,
     title : string,
@@ -5,5 +7,6 @@ export interface IPostWithAuthor {
     author : {
         id : string,
         name : string
-    }
+    },
+    comments : ICommentView[]
 }

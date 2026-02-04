@@ -19,5 +19,13 @@ export class DeleteCommentUseCase implements IBaseUseCase<IDeleteCommentRequestD
         if(!user || !comment || !post){
             throw new Error("Invalid Request")
         }
+
+        if(user.id !== comment.userId  || post.id !== comment.postId){
+            throw new Error("Invalid Access To delete")
+        }
+
+        await this.commentRepo.delete(comment.id)
+
+        return {deletedCommentId:  comment_id}
     }
 }

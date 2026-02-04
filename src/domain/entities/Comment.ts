@@ -3,5 +3,6 @@ export class Comment{
         public readonly id : string,
         public readonly userId : string,
         public readonly postId : string,
+        public readonly comment : string
     ){}
 }
