@@ -15,10 +15,10 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "paths": {
-      "@application/*": ["./src/application/*"],
       "@dto/*": ["./src/application/dto/*"],
       "@ports/*": ["./src/application/ports/*"],
       "@interface/*": ["./src/application/interface/*"],
+      "@application/*": ["./src/application/*"],
 
       "@domain/*": ["./src/domain/*"],
       "@infrastructure/*": ["./src/infrastructure/*"]
