@@ -21,6 +21,11 @@ export class CreateUserUseCase implements IBaseUseCase<
   async execute(input: ICreateUserRequestDTO): Promise<ICreateUserResponseDTO> {
     const { email, name, password } = input;
 
+    const exists = await this.userRepo.findByEmail(email)
+    if(exists){
+      throw new Error("User already exists")
+    }
+
     const hashedPassword = await this.passwordHasher.hash(password);
     const user = new User(
       this.idGenerator.generate(),
@@ -29,7 +34,7 @@ export class CreateUserUseCase implements IBaseUseCase<
       hashedPassword,
     );
 
-    this.userRepo.create(user);
+  await this.userRepo.create(user);
 
     return { id: user.id, name: user.name, email: user.email.value };
   }

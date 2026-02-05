@@ -11,15 +11,15 @@ export class CurrentUserUseCase implements IBaseUseCase<ICurrentUserRequestDTO,I
     ){}
 
     async execute(input: ICurrentUserRequestDTO): Promise<ICurrentUserResponseDTO> {
-        const {token} = input
+        const token = input
 
         const decodedToken = this.tokenService.verifyAccessToken(token)
 
         if(!decodedToken){
             throw new Error("Invalid Token")
         }
-
-        const user = await this.userRepo.findByEmail(decodedToken.email)
+        console.log(decodedToken)
+        const user = await this.userRepo.findById(decodedToken.userId)
 
         if(!user){
             throw new Error("No User Found")

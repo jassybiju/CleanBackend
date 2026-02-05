@@ -11,9 +11,9 @@ export class ListPostsUseCase implements IBaseUseCase<IListPostRequestDTO, IList
 
     async execute(input: IListPostRequestDTO): Promise<IListPostResponseDTO> {
         const {page , limit} = input
-
+    
         const posts = await this.postRepo.list({limit, page})
         const postsWithComment = await Promise.all(posts.map(async post =>({...post, comments :await this.commentRepo.findByPostId(post.id)})))
-   a     return {posts : postsWithComment}
+        return {posts : postsWithComment}
     }
 }

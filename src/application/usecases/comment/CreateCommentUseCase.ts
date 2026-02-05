@@ -29,7 +29,7 @@ export class CreateCommentUseCase implements IBaseUseCase<
       this.userRepo.findById(user_id),
       this.postRepo.findById(post_id),
     ]);
-
+    console.log(user,post, post_id)
     if (!user || !post) {
       throw new Error("Invalid Request");
     }

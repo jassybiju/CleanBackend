@@ -1,6 +1,6 @@
 import { Comment } from "@domain/entities/Comment";
 import { ICommentRepository } from "@ports/ICommentRepository";
-import { commentModel } from "../model/comments.model";
+import { commentModel } from "../../model/mongo/comments.model";
 import { ICommentView } from "@dto/comment/ICommentView";
 
 export class CommentMongoRepository implements ICommentRepository {
@@ -28,14 +28,14 @@ export class CommentMongoRepository implements ICommentRepository {
 
   async findByPostId(postId: string): Promise<ICommentView[]> {
     const comments = await commentModel.find({ post_id: postId }).lean();
-    return comments.map(comment => ({
-        id : comment._id.toString(),
-        user : comment.user_id,
-        comment : comment.comment
-    }))
+    return comments.map((comment) => ({
+      id: comment._id.toString(),
+      user: comment.user_id,
+      comment: comment.comment,
+    }));
   }
 
   async delete(id: string): Promise<void> {
-      await commentModel.findByIdAndDelete(id)
+    await commentModel.findByIdAndDelete(id);
   }
 }

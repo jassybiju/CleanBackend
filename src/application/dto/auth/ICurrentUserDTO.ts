@@ -1,6 +1,4 @@
-export interface ICurrentUserRequestDTO {
-    token : string
-}
+export type ICurrentUserRequestDTO  = string
 
 export interface ICurrentUserResponseDTO {
     email : string,

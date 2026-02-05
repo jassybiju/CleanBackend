@@ -14,7 +14,7 @@ export class CreatePostUseCase implements IBaseUseCase<ICreatePostRequestDTO, IC
 
     async execute(input: ICreatePostRequestDTO): Promise<ICreatePostResponseDTO> {
         const {authorId, content, title} = input
-
+        console.log(input)
         const author = await this.userRepo.findById(authorId)
 
         if(!author){
@@ -28,7 +28,7 @@ export class CreatePostUseCase implements IBaseUseCase<ICreatePostRequestDTO, IC
         }
 
         const post = new Post(this.idGenerator.generate(),title, content, author.id)
-
+        await this.postRepo.create(post)
         return {
             authorId : post.authorId,
             title : post.title,

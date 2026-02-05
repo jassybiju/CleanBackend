@@ -13,7 +13,7 @@ export class GetPostUseCase implements IBaseUseCase<IGetPostRequestDTO, IGetPost
 
     async execute(input: IGetPostRequestDTO): Promise<IGetPostResponseDTO> {
         const {post_id} = input
-
+        console.log(input)
         const post = await this.postRepo.findByIdWithAuthor(post_id)
         if(!post){
             throw new Error("Post not found")

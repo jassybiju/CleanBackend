@@ -13,6 +13,7 @@ export class DeletePostUseCase implements IBaseUseCase<IDeletePostRequestDTO, ID
         const  {user_id , post_id}= input
 
         const [user,post] =await Promise.all([this.userRepo.findById(user_id),this.postRepo.findById(post_id)])
+        console.log(user,post,user_id, post_id)
         if(!user || !post){
             throw new Error("Invalid request")
         }        

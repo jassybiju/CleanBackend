@@ -33,6 +33,7 @@ export class AuthController {
 
   async currentUser(req : Request, res : Response, next : NextFunction){
     try {
+      console.log(req.cookies)
             const result = await this.currentUserUseCase.execute(req.cookies['jwt'])
             res.status(200).json({result})
     } catch (error) {
